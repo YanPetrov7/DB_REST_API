@@ -1,14 +1,14 @@
 import db from '../db_config/db_config.js';
 
 export const createDataFile = (req, res) => {   
-    const { name, description, file_csv, provider, confirmed } = req.body;
-    const query = 'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, date_creation, confirmed) VALUES (?, ?, ?, ?, ?, ?)';
+    const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed} = req.body;
+    const query = 'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     const date_creation = new Date();
 
     // Check for nesesery fields
 
     if (!(name && description && file_csv && provider)) {
-        const message = 'Name, description, file_csv and provider are nesesery fields';
+        const message = 'Name, description, file_csv, provider, created_by_id and dataset_id are nesesery fields';
         console.log(message);
         return res
             .status(404)
@@ -29,7 +29,7 @@ export const createDataFile = (req, res) => {
 
         // Create data file
 
-        db.query(query, [name, description, file_csv, provider, date_creation, confirmed], (err, result) => {
+        db.query(query, [name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation], (err, result) => {
             if(!err){
                 const message = `Data file with name:[${name}] was added`;
                 console.log(message);
@@ -102,7 +102,7 @@ export const deleteDataFile = (req, res) => {
 
     db.query(query, [id], (err, result) => {
         if(result.affectedRows == 0) {
-            const message = `No pdapp_datasetfile with id:[${id}]`;
+            const message = `No data file with id:[${id}]`;
             console.log(message);
             return res
                 .status(404)
@@ -124,14 +124,14 @@ export const deleteDataFile = (req, res) => {
 
 export const updateDataFile =  (req,res) => {
     const id = req.params.id; 
-    let { name, description, file_csv, provider, confirmed } = req.body;
-    const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, confirmed=? where id=?';
+    let { name, description, file_csv, provider, created_by_id, dataset_id, confirmed } = req.body;
+    const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, created_by_id=?, dataset_id=?, confirmed=? where id=?';
 
     // Update data file
 
-    db.query(query, [name, description, file_csv, provider, confirmed, id],(err, result) => {
+    db.query(query, [name, description, file_csv, provider, confirmed, created_by_id, dataset_id, id],(err, result) => {
         if(result.affectedRows == 0) {
-            const message = `No pdapp_datasetfile with id:[${id}]`;
+            const message = `No data file with id:[${id}]`;
             return res
                 .status(404)
                 .json({message});
