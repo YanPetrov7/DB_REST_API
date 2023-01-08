@@ -1,5 +1,3 @@
-'use strict';
-
 import mysql from 'mysql';
 
 const db = mysql.createConnection({
