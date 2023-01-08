@@ -2,7 +2,7 @@ import db from '../db_config/db_config.js';
 
 export const createDataFile = (req, res) => {   
     const { name, description, file_csv, provider, confirmed } = req.body;
-    const query = 'INSERT INTO data_file (name, description, file_csv, provider, date_creation, confirmed) VALUES (?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, date_creation, confirmed) VALUES (?, ?, ?, ?, ?, ?)';
     const date_creation = new Date();
 
     // Check for nesesery fields
@@ -17,7 +17,7 @@ export const createDataFile = (req, res) => {
 
     // Check for dublicated names
 
-    db.query('SELECT COUNT(*) AS namesCount FROM data_file WHERE name=?', [name], (err, result) => {
+    db.query('SELECT COUNT(*) AS namesCount FROM pdapp_datasetfile WHERE name=?', [name], (err, result) => {
         const count = result[0].namesCount;
         if(count !== 0) {
             const message = `Data file with name:[${name}] is already existing`;
@@ -50,7 +50,7 @@ export const getDataFiles = (req, res) => {
 
     // Get data files
 
-    const query = 'SELECT *FROM data_file';
+    const query = 'SELECT *FROM pdapp_datasetfile';
     db.query(query, (err,result) => {
         if(!err){
             const message = 'Data files were succsesfuly received';
@@ -68,7 +68,7 @@ export const getDataFiles = (req, res) => {
 
 export const getDataFile = (req, res) => {
     const id = req.params.id;
-    const query = 'SELECT *FROM data_file WHERE id=?';
+    const query = 'SELECT *FROM pdapp_datasetfile WHERE id=?';
 
     // Get data file
 
@@ -96,13 +96,13 @@ export const getDataFile = (req, res) => {
 
 export const deleteDataFile = (req, res) => { 
     const id = req.params.id;
-    const query = 'DELETE FROM data_file WHERE id=?';
+    const query = 'DELETE FROM pdapp_datasetfile WHERE id=?';
 
     // Deleate data file
 
     db.query(query, [id], (err, result) => {
         if(result.affectedRows == 0) {
-            const message = `No data_file with id:[${id}]`;
+            const message = `No pdapp_datasetfile with id:[${id}]`;
             console.log(message);
             return res
                 .status(404)
@@ -125,13 +125,13 @@ export const deleteDataFile = (req, res) => {
 export const updateDataFile =  (req,res) => {
     const id = req.params.id; 
     let { name, description, file_csv, provider, confirmed } = req.body;
-    const query = 'UPDATE data_file SET name=?, description=?, file_csv=?, provider=?, confirmed=? where id=?';
+    const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, confirmed=? where id=?';
 
     // Update data file
 
     db.query(query, [name, description, file_csv, provider, confirmed, id],(err, result) => {
         if(result.affectedRows == 0) {
-            const message = `No data_file with id:[${id}]`;
+            const message = `No pdapp_datasetfile with id:[${id}]`;
             return res
                 .status(404)
                 .json({message});

@@ -9,7 +9,7 @@ router.post('/', createDataFile);
 
 router.get('/:id', getDataFile);
 
-router.delete('/:id', deleteDataFile);
+router.delete('/:id', deleteDataFile);     
 
 router.patch('/:id', updateDataFile);
 
