@@ -73,6 +73,7 @@ export const getDataFile = (req, res) => {
     // Get data file
 
     db.query(query, [id], (err,result) => {
+        // Check if data file exist
         if (result.length == 0) {
             const message = `No data file with id:[${id}]`;
             console.log(message);
@@ -101,6 +102,7 @@ export const deleteDataFile = (req, res) => {
     // Deleate data file
 
     db.query(query, [id], (err, result) => {
+        // Check if data file exist
         if(result.affectedRows == 0) {
             const message = `No data file with id:[${id}]`;
             console.log(message);
@@ -124,12 +126,13 @@ export const deleteDataFile = (req, res) => {
 
 export const updateDataFile =  (req,res) => {
     const id = req.params.id; 
-    let { name, description, file_csv, provider, created_by_id, dataset_id, confirmed } = req.body;
+    const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed } = req.body;
     const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, created_by_id=?, dataset_id=?, confirmed=? where id=?';
 
     // Update data file
 
     db.query(query, [name, description, file_csv, provider, confirmed, created_by_id, dataset_id, id],(err, result) => {
+        // Check if data file exist
         if(result.affectedRows == 0) {
             const message = `No data file with id:[${id}]`;
             return res
