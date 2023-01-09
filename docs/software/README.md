@@ -217,8 +217,8 @@ create index django_session_expire_date_a5c62663 on django_session (expire_date)
 
 ## Кореневий файл серверу
 ```js
-import http from 'http';
-import app from './index.js';
+const http = require('http');
+const app = require('./index.js');
 
 const port = 4000;
 
@@ -228,19 +228,19 @@ server.listen(port);
 ```
 ## Файл управління сервером
 ```js
-import express from 'express';
-import dataFileRoutes from './routes/dataFileRoutes.js';
+const express = require('express')
+const dataFileRoutes = require('./routes/dataFileRoutes.js');
 
 const app = express();
 
 app.use(express.json());
 app.use('/dataFiles', dataFileRoutes);
 
-export default app;
+module.exports = app;
 ```
 ## Файл для підключення до бази даних
 ```js
-import mysql from 'mysql';
+const mysql = require('mysql');
 
 const db = mysql.createConnection({
     port: 3306,
@@ -258,12 +258,12 @@ db.connect((err) => {
     }
 });
 
-export default db;
+module.exports = db;
 ```
 ## Кореневий файл контроллера
 ```js
-import express from 'express';
-import { createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile } from '../controllers/dataFilesController.js';
+const express = require('express');
+const { createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile } = require( '../controllers/dataFilesController.js');
 
 const router = express.Router();
 
@@ -277,13 +277,13 @@ router.delete('/:id', deleteDataFile);
 
 router.patch('/:id', updateDataFile);
 
-export default router;
+module.exports = router;
 ```
 ## Файл контроллеру для управління запитами
 ```js
-import db from '../db_config/db_config.js';
+const db = require('../db_config/db_config.js');
 
-export const createDataFile = (req, res) => {   
+const createDataFile = (req, res) => {   
     const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed} = req.body;
     const query = 'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     const date_creation = new Date();
@@ -329,7 +329,7 @@ export const createDataFile = (req, res) => {
     
 };
 
-export const getDataFiles = (req, res) => {
+const getDataFiles = (req, res) => {
 
     // Get data files
 
@@ -349,7 +349,7 @@ export const getDataFiles = (req, res) => {
     });
 };
 
-export const getDataFile = (req, res) => {
+const getDataFile = (req, res) => {
     const id = req.params.id;
     const query = 'SELECT *FROM pdapp_datasetfile WHERE id=?';
 
@@ -378,7 +378,7 @@ export const getDataFile = (req, res) => {
     });
 };
 
-export const deleteDataFile = (req, res) => { 
+const deleteDataFile = (req, res) => { 
     const id = req.params.id;
     const query = 'DELETE FROM pdapp_datasetfile WHERE id=?';
 
@@ -407,7 +407,7 @@ export const deleteDataFile = (req, res) => {
     });
 };
 
-export const updateDataFile =  (req,res) => {
+const updateDataFile =  (req,res) => {
     const id = req.params.id; 
     const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed } = req.body;
     const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, created_by_id=?, dataset_id=?, confirmed=? where id=?';
@@ -435,5 +435,7 @@ export const updateDataFile =  (req,res) => {
         }
     });
 };
+
+module.exports = {createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile};
 ```
 
