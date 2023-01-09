@@ -1,6 +1,6 @@
-import db from '../db_config/db_config.js';
+const db = require('../db_config/db_config.js');
 
-export const createDataFile = (req, res) => {   
+const createDataFile = (req, res) => {   
     const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed} = req.body;
     const query = 'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
     const date_creation = new Date();
@@ -46,7 +46,7 @@ export const createDataFile = (req, res) => {
     
 };
 
-export const getDataFiles = (req, res) => {
+const getDataFiles = (req, res) => {
 
     // Get data files
 
@@ -66,7 +66,7 @@ export const getDataFiles = (req, res) => {
     });
 };
 
-export const getDataFile = (req, res) => {
+const getDataFile = (req, res) => {
     const id = req.params.id;
     const query = 'SELECT *FROM pdapp_datasetfile WHERE id=?';
 
@@ -95,7 +95,7 @@ export const getDataFile = (req, res) => {
     });
 };
 
-export const deleteDataFile = (req, res) => { 
+const deleteDataFile = (req, res) => { 
     const id = req.params.id;
     const query = 'DELETE FROM pdapp_datasetfile WHERE id=?';
 
@@ -124,7 +124,7 @@ export const deleteDataFile = (req, res) => {
     });
 };
 
-export const updateDataFile =  (req,res) => {
+const updateDataFile =  (req,res) => {
     const id = req.params.id; 
     const { name, description, file_csv, provider, created_by_id, dataset_id, confirmed } = req.body;
     const query = 'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, created_by_id=?, dataset_id=?, confirmed=? where id=?';
@@ -152,3 +152,5 @@ export const updateDataFile =  (req,res) => {
         }
     });
 };
+
+module.exports = {createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile};

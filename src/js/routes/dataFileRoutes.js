@@ -1,5 +1,5 @@
-import express from 'express';
-import { createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile } from '../controllers/dataFilesController.js';
+const express = require('express');
+const { createDataFile, getDataFiles, getDataFile, deleteDataFile, updateDataFile } = require( '../controllers/dataFilesController.js');
 
 const router = express.Router();
 
@@ -13,4 +13,4 @@ router.delete('/:id', deleteDataFile);
 
 router.patch('/:id', updateDataFile);
 
-export default router;
+module.exports = router;
