@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Реалізація інформаційного та програмного забезпечення | Система управління відкритими даними</title>
+    <meta name="generator" content="VuePress 1.9.8">
+    <link rel="icon" href="/DB_REST_API/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Курсова робота з дисципліни &quot;Бази даних&quot;">
+    
+    <link rel="preload" href="/DB_REST_API/assets/css/0.styles.1b53039e.css" as="style"><link rel="preload" href="/DB_REST_API/assets/js/app.a559ff3a.js" as="script"><link rel="preload" href="/DB_REST_API/assets/js/2.a70db7be.js" as="script"><link rel="preload" href="/DB_REST_API/assets/js/23.dc6cf073.js" as="script"><link rel="prefetch" href="/DB_REST_API/assets/js/10.581e1220.js"><link rel="prefetch" href="/DB_REST_API/assets/js/11.70839b02.js"><link rel="prefetch" href="/DB_REST_API/assets/js/12.13c287cf.js"><link rel="prefetch" href="/DB_REST_API/assets/js/13.19c85a35.js"><link rel="prefetch" href="/DB_REST_API/assets/js/14.22f23496.js"><link rel="prefetch" href="/DB_REST_API/assets/js/15.b8c1599c.js"><link rel="prefetch" href="/DB_REST_API/assets/js/16.26300858.js"><link rel="prefetch" href="/DB_REST_API/assets/js/17.c0e8f4cf.js"><link rel="prefetch" href="/DB_REST_API/assets/js/18.9e21ffa4.js"><link rel="prefetch" href="/DB_REST_API/assets/js/19.fb087673.js"><link rel="prefetch" href="/DB_REST_API/assets/js/20.f8cf7836.js"><link rel="prefetch" href="/DB_REST_API/assets/js/21.b0416f6d.js"><link rel="prefetch" href="/DB_REST_API/assets/js/22.5991b55f.js"><link rel="prefetch" href="/DB_REST_API/assets/js/24.9282478e.js"><link rel="prefetch" href="/DB_REST_API/assets/js/25.3c2316e8.js"><link rel="prefetch" href="/DB_REST_API/assets/js/26.d0e518fb.js"><link rel="prefetch" href="/DB_REST_API/assets/js/3.54d5b903.js"><link rel="prefetch" href="/DB_REST_API/assets/js/4.56a0e777.js"><link rel="prefetch" href="/DB_REST_API/assets/js/5.ac170b7f.js"><link rel="prefetch" href="/DB_REST_API/assets/js/6.d6e17e0d.js"><link rel="prefetch" href="/DB_REST_API/assets/js/7.e991ce59.js"><link rel="prefetch" href="/DB_REST_API/assets/js/8.d1e6c660.js"><link rel="prefetch" href="/DB_REST_API/assets/js/9.200342e4.js">
+    <link rel="stylesheet" href="/DB_REST_API/assets/css/0.styles.1b53039e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/DB_REST_API/" class="home-link router-link-active"><!----> <span class="site-name">Система управління відкритими даними</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/DB_REST_API/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/YanPetrov7/DB_REST_API/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/DB_REST_API/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/YanPetrov7/DB_REST_API/" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/DB_REST_API/intro/" class="sidebar-link">Вступ</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/DB_REST_API/requirements/" class="sidebar-heading clickable"><span>Розроблення загальних вимог до системи</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/DB_REST_API/use%20cases/" class="sidebar-link">Розроблення вимог до функціональности системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#сценаріі" class="sidebar-link">Сценарії</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-1-1-знаити-дані-з-використанням-фільтру" class="sidebar-link">DC_1.1 Знайти дані з використанням фільтру</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-1-2-переглянути-дані-у-вигляді-графіку" class="sidebar-link">DC_1.2 Переглянути дані у вигляді графіку</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-1-3-переглянути-дані-у-вигляді-таблиці" class="sidebar-link">DC_1.3 Переглянути дані у вигляді таблиці</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-1-4-зберегти-дані-у-форматі-xls" class="sidebar-link">DC_1.4 Зберегти дані у форматі xls</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-1-5-запропонувати-дані-для-публікаціі" class="sidebar-link">DC_1.5 Запропонувати дані для публікації</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dp-2-1-створити-набір-даних" class="sidebar-link">DP_2.1 Створити набір даних</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dp-2-2-додати-новии-фаил-у-набір-даних" class="sidebar-link">DP_2.2 Додати новий файл у набір даних</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dp-2-3-видалити-фаил-з-набору-даних" class="sidebar-link">DP_2.3 Видалити файл з набору даних</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dp-3-1-редагувати-набір-даних" class="sidebar-link">DP_3.1 Редагувати набір даних</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-3-2-затвердити-запропоновані-користувачем-дані" class="sidebar-link">DC_3.2 Затвердити запропоновані Користувачем дані</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/use%20cases/#dc-3-3-скасувати-запропоновані-користувачем-дані" class="sidebar-link">DC_3.3 Скасувати запропоновані Користувачем дані</a></li></ul></li><li><a href="/DB_REST_API/design/" class="sidebar-link">Проектування інформаційного забезпечення</a></li><li><a href="/DB_REST_API/software/" aria-current="page" class="active sidebar-link">Реалізація інформаційного та програмного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/software/#кореневии-фаил-серверу" class="sidebar-link">Кореневий файл серверу</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/software/#фаил-управління-сервером" class="sidebar-link">Файл управління сервером</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/software/#фаил-для-підключення-до-бази-даних" class="sidebar-link">Файл для підключення до бази даних</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/software/#кореневии-фаил-контроллера" class="sidebar-link">Кореневий файл контроллера</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/software/#фаил-контроллеру-для-управління-запитами" class="sidebar-link">Файл контроллеру для управління запитами</a></li></ul></li><li><a href="/DB_REST_API/test/" class="sidebar-link">Тестування працездатності системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#запуск-сервера" class="sidebar-link">Запуск сервера</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#cтворення-фаилу-з-даними" class="sidebar-link">Cтворення файлу з даними</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#запит" class="sidebar-link">Запит</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#результат" class="sidebar-link">Результат</a></li></ul></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#вивід-всих-фаилів-з-даними" class="sidebar-link">Вивід всих файлів з даними</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#запит-2" class="sidebar-link">Запит</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#результат-2" class="sidebar-link">Результат</a></li></ul></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#вивід-конкретного-фаилу-з-даними-по-id" class="sidebar-link">Вивід конкретного файлу з даними (по id)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#запит-3" class="sidebar-link">Запит</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#результат-3" class="sidebar-link">Результат</a></li></ul></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#оновлення-фаилу-з-даними-по-id" class="sidebar-link">Оновлення файлу з даними (по id)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#до-відновлення" class="sidebar-link">До відновлення</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#запит-4" class="sidebar-link">Запит</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#відповідь" class="sidebar-link">Відповідь</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#результат-4" class="sidebar-link">Результат</a></li></ul></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#видалення-фаилу-з-даними-по-id" class="sidebar-link">Видалення файлу з даними (по id)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#запит-5" class="sidebar-link">Запит</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#відповідь-2" class="sidebar-link">Відповідь</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#результат-5" class="sidebar-link">Результат</a></li></ul></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#помилки" class="sidebar-link">Помилки</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#немає-фаилу-з-потрібним-id" class="sidebar-link">Немає файлу з потрібним id</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#заиняте-ім-я" class="sidebar-link">Зайняте ім'я</a></li><li class="sidebar-sub-header"><a href="/DB_REST_API/test/#потрібні-поля-не-є-заповненими" class="sidebar-link">Потрібні поля не є заповненими</a></li></ul></li></ul></li><li><a href="/DB_REST_API/conclusion/" class="sidebar-link">Висновки</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="реалізація-інформаціиного-та-програмного-забезпечення"><a href="#реалізація-інформаціиного-та-програмного-забезпечення" class="header-anchor">#</a> Реалізація інформаційного та програмного забезпечення</h1> <p>В рамках проекту розробляється:</p> <ul><li>SQL-скрипт для створення на початкового наповнення бази даних</li></ul> <div class="language-SQL extra-class"><pre class="language-sql"><code><span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `django_migrations`- Service table (stores the history of migrations)</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> django_migrations <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  app <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  applied <span class="token keyword">timestamp</span> <span class="token keyword">with</span> <span class="token keyword">time</span> zone <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  django_migrations owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `django_content_type`- Service table (stores data about relationships between models)</span>
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> django_content_type <span class="token punctuation">(</span>
+  id <span class="token keyword">integer</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  app_label <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  model <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  <span class="token keyword">constraint</span> django_content_type_app_label_model_76bd3d3b_uniq <span class="token keyword">unique</span> <span class="token punctuation">(</span>app_label<span class="token punctuation">,</span> model<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  django_content_type owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+  
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `auth_permission`- Service table (stores permissions)</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> auth_permission <span class="token punctuation">(</span>
+  id <span class="token keyword">integer</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  content_type_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_permission_content_type_id_2f476e4b_fk_django_co <span class="token keyword">references</span> django_content_type deferrable initially deferred<span class="token punctuation">,</span> 
+  codename <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  <span class="token keyword">constraint</span> auth_permission_content_type_id_codename_01ab375a_uniq <span class="token keyword">unique</span> <span class="token punctuation">(</span>content_type_id<span class="token punctuation">,</span> codename<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  auth_permission owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_permission_content_type_id_2f476e4b <span class="token keyword">on</span> auth_permission <span class="token punctuation">(</span>content_type_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `auth_group`- Service table (stores groups)</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> auth_group <span class="token punctuation">(</span>
+  id <span class="token keyword">integer</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">unique</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  auth_group owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_group_name_a6ea08ec_like <span class="token keyword">on</span> auth_group <span class="token punctuation">(</span>name varchar_pattern_ops<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `auth_group_permissions`- Service table (binding table, stores data about permissions for groups</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> auth_group_permissions <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  group_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_group_permissions_group_id_b120cbf9_fk_auth_group_id <span class="token keyword">references</span> auth_group deferrable initially deferred<span class="token punctuation">,</span> 
+  permission_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_group_permissio_permission_id_84c5c92e_fk_auth_perm <span class="token keyword">references</span> auth_permission deferrable initially deferred<span class="token punctuation">,</span> 
+  <span class="token keyword">constraint</span> auth_group_permissions_group_id_permission_id_0cd325b0_uniq <span class="token keyword">unique</span> <span class="token punctuation">(</span>group_id<span class="token punctuation">,</span> permission_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  auth_group_permissions owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_group_permissions_group_id_b120cbf9 <span class="token keyword">on</span> auth_group_permissions <span class="token punctuation">(</span>group_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_group_permissions_permission_id_84c5c92e <span class="token keyword">on</span> auth_group_permissions <span class="token punctuation">(</span>permission_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `auth_user`- Stores information about registered users</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> auth_user <span class="token punctuation">(</span>
+  id <span class="token keyword">integer</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  password <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  last_login <span class="token keyword">timestamp</span> <span class="token keyword">with</span> <span class="token keyword">time</span> zone<span class="token punctuation">,</span> 
+  is_superuser <span class="token keyword">boolean</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  username <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">unique</span><span class="token punctuation">,</span> 
+  first_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  last_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">150</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  email <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">254</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  is_staff <span class="token keyword">boolean</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  is_active <span class="token keyword">boolean</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  date_joined <span class="token keyword">timestamp</span> <span class="token keyword">with</span> <span class="token keyword">time</span> zone <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  auth_user owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_user_username_6821ab7c_like <span class="token keyword">on</span> auth_user <span class="token punctuation">(</span>username varchar_pattern_ops<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `auth_user_groups`- Service table (binding table, associate users with groups)</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> auth_user_groups <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  user_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_user_groups_user_id_6a12ed8b_fk_auth_user_id <span class="token keyword">references</span> auth_user deferrable initially deferred<span class="token punctuation">,</span> 
+  group_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_user_groups_group_id_97559544_fk_auth_group_id <span class="token keyword">references</span> auth_group deferrable initially deferred<span class="token punctuation">,</span> 
+  <span class="token keyword">constraint</span> auth_user_groups_user_id_group_id_94350c0c_uniq <span class="token keyword">unique</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> group_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  auth_user_groups owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_user_groups_user_id_6a12ed8b <span class="token keyword">on</span> auth_user_groups <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_user_groups_group_id_97559544 <span class="token keyword">on</span> auth_user_groups <span class="token punctuation">(</span>group_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `auth_user_user_permissions`- Service table (binding table, stores user permissions)</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> auth_user_user_permissions <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  user_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id <span class="token keyword">references</span> auth_user deferrable initially deferred<span class="token punctuation">,</span> 
+  permission_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm <span class="token keyword">references</span> auth_permission deferrable initially deferred<span class="token punctuation">,</span> 
+  <span class="token keyword">constraint</span> auth_user_user_permissions_user_id_permission_id_14a6b632_uniq <span class="token keyword">unique</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span> permission_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  auth_user_user_permissions owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_user_user_permissions_user_id_a95ead1b <span class="token keyword">on</span> auth_user_user_permissions <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> auth_user_user_permissions_permission_id_1fbb5f2c <span class="token keyword">on</span> auth_user_user_permissions <span class="token punctuation">(</span>permission_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `django_admin_log`- Service table (stores a history of administrator actions)</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> django_admin_log <span class="token punctuation">(</span>
+  id <span class="token keyword">integer</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  action_time <span class="token keyword">timestamp</span> <span class="token keyword">with</span> <span class="token keyword">time</span> zone <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  object_id <span class="token keyword">text</span><span class="token punctuation">,</span> 
+  object_repr <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  action_flag <span class="token keyword">smallint</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> django_admin_log_action_flag_check <span class="token keyword">check</span> <span class="token punctuation">(</span>action_flag <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 
+  change_message <span class="token keyword">text</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  content_type_id <span class="token keyword">integer</span> <span class="token keyword">constraint</span> django_admin_log_content_type_id_c4bce8eb_fk_django_co <span class="token keyword">references</span> django_content_type deferrable initially deferred<span class="token punctuation">,</span> 
+  user_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> django_admin_log_user_id_c564eba6_fk_auth_user_id <span class="token keyword">references</span> auth_user deferrable initially deferred
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  django_admin_log owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> django_admin_log_content_type_id_c4bce8eb <span class="token keyword">on</span> django_admin_log <span class="token punctuation">(</span>content_type_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> django_admin_log_user_id_c564eba6 <span class="token keyword">on</span> django_admin_log <span class="token punctuation">(</span>user_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `pdapp_category`- Stores dataset categories</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> pdapp_category <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  hex_code <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  pdapp_category owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `pdapp_dataset`- Stores information about datasets</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> pdapp_dataset <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  description <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  category_id <span class="token keyword">bigint</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> pdapp_dataset_category_id_02477a8e_fk_pdapp_category_id <span class="token keyword">references</span> pdapp_category deferrable initially deferred
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  pdapp_dataset owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> pdapp_dataset_category_id_02477a8e <span class="token keyword">on</span> pdapp_dataset <span class="token punctuation">(</span>category_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `pdapp_datasetfile`- Stores information about files belonging to datasets</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> pdapp_datasetfile <span class="token punctuation">(</span>
+  id <span class="token keyword">bigint</span> generated <span class="token keyword">by</span> <span class="token keyword">default</span> <span class="token keyword">as</span> <span class="token keyword">identity</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  description <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  file_csv <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  provider <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  date_creation <span class="token keyword">timestamp</span> <span class="token keyword">with</span> <span class="token keyword">time</span> zone <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  confirmed <span class="token keyword">boolean</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  created_by_id <span class="token keyword">integer</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> pdapp_datasetfile_created_by_id_89a2d270_fk_auth_user_id <span class="token keyword">references</span> auth_user deferrable initially deferred<span class="token punctuation">,</span> 
+  dataset_id <span class="token keyword">bigint</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">constraint</span> pdapp_datasetfile_dataset_id_7773aff1_fk_pdapp_dataset_id <span class="token keyword">references</span> pdapp_dataset deferrable initially deferred
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  pdapp_datasetfile owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> pdapp_datasetfile_created_by_id_89a2d270 <span class="token keyword">on</span> pdapp_datasetfile <span class="token punctuation">(</span>created_by_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> pdapp_datasetfile_dataset_id_7773aff1 <span class="token keyword">on</span> pdapp_datasetfile <span class="token punctuation">(</span>dataset_id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- -----------------------------------------------------</span>
+<span class="token comment">-- Table `django_session`- Service table (stores session data)</span>
+<span class="token comment">-- ----------------------------------------------------- </span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> django_session <span class="token punctuation">(</span>
+  session_key <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span> 
+  session_data <span class="token keyword">text</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span> 
+  expire_date <span class="token keyword">timestamp</span> <span class="token keyword">with</span> <span class="token keyword">time</span> zone <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">alter</span> <span class="token keyword">table</span> 
+  django_session owner <span class="token keyword">to</span> nikitavn<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> django_session_session_key_c0390e0f_like <span class="token keyword">on</span> django_session <span class="token punctuation">(</span>session_key varchar_pattern_ops<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">index</span> django_session_expire_date_a5c62663 <span class="token keyword">on</span> django_session <span class="token punctuation">(</span>expire_date<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>RESTfull сервіс для управління даними</li></ul> <h2 id="кореневии-фаил-серверу"><a href="#кореневии-фаил-серверу" class="header-anchor">#</a> Кореневий файл серверу</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> http <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'http'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./index.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> port <span class="token operator">=</span> <span class="token number">4000</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> server <span class="token operator">=</span> http<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+server<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="фаил-управління-сервером"><a href="#фаил-управління-сервером" class="header-anchor">#</a> Файл управління сервером</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> dataFileRoutes <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./routes/dataFileRoutes.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>express<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/dataFiles'</span><span class="token punctuation">,</span> dataFileRoutes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> app<span class="token punctuation">;</span>
+</code></pre></div><h2 id="фаил-для-підключення-до-бази-даних"><a href="#фаил-для-підключення-до-бази-даних" class="header-anchor">#</a> Файл для підключення до бази даних</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> mysql <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'mysql'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> db <span class="token operator">=</span> mysql<span class="token punctuation">.</span><span class="token function">createConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">3306</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">host</span><span class="token operator">:</span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">user</span><span class="token operator">:</span> <span class="token string">'root'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">password</span><span class="token operator">:</span> <span class="token string">'Yan1234#$'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">database</span><span class="token operator">:</span> <span class="token string">'database1'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+db<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>err<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Connected to the database'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> db<span class="token punctuation">;</span>
+</code></pre></div><h2 id="кореневии-фаил-контроллера"><a href="#кореневии-фаил-контроллера" class="header-anchor">#</a> Кореневий файл контроллера</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">{</span> createDataFile<span class="token punctuation">,</span> getDataFiles<span class="token punctuation">,</span> getDataFile<span class="token punctuation">,</span> deleteDataFile<span class="token punctuation">,</span> updateDataFile <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span> <span class="token string">'../controllers/dataFilesController.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> express<span class="token punctuation">.</span><span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> getDataFiles<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+router<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> createDataFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/:id'</span><span class="token punctuation">,</span> getDataFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+router<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token string">'/:id'</span><span class="token punctuation">,</span> deleteDataFile<span class="token punctuation">)</span><span class="token punctuation">;</span>     
+
+router<span class="token punctuation">.</span><span class="token function">patch</span><span class="token punctuation">(</span><span class="token string">'/:id'</span><span class="token punctuation">,</span> updateDataFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> router<span class="token punctuation">;</span>
+</code></pre></div><h2 id="фаил-контроллеру-для-управління-запитами"><a href="#фаил-контроллеру-для-управління-запитами" class="header-anchor">#</a> Файл контроллеру для управління запитами</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> db <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'../db_config/db_config.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">createDataFile</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>   
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> description<span class="token punctuation">,</span> file_csv<span class="token punctuation">,</span> provider<span class="token punctuation">,</span> created_by_id<span class="token punctuation">,</span> dataset_id<span class="token punctuation">,</span> confirmed<span class="token punctuation">}</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>body<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> query <span class="token operator">=</span> <span class="token string">'INSERT INTO pdapp_datasetfile (name, description, file_csv, provider, created_by_id, dataset_id, confirmed, date_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> date_creation <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Check for nesesery fields</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span>name <span class="token operator">&amp;&amp;</span> description <span class="token operator">&amp;&amp;</span> file_csv <span class="token operator">&amp;&amp;</span> provider<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token string">'Name, description, file_csv, provider, created_by_id and dataset_id are nesesery fields'</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res
+            <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Check for dublicated names</span>
+
+    db<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token string">'SELECT COUNT(*) AS namesCount FROM pdapp_datasetfile WHERE name=?'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> result</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> count <span class="token operator">=</span> result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>namesCount<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>count <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Data file with name:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">] is already existing</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// Create data file</span>
+
+        db<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> description<span class="token punctuation">,</span> file_csv<span class="token punctuation">,</span> provider<span class="token punctuation">,</span> created_by_id<span class="token punctuation">,</span> dataset_id<span class="token punctuation">,</span> confirmed<span class="token punctuation">,</span> date_creation<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> result</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>err<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Data file with name:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">] was added</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">return</span> res
+                    <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> res
+                    <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">getDataFiles</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Get data files</span>
+
+    <span class="token keyword">const</span> query <span class="token operator">=</span> <span class="token string">'SELECT *FROM pdapp_datasetfile'</span><span class="token punctuation">;</span>
+    db<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span>result</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>err<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token string">'Data files were succsesfuly received'</span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">,</span> result<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">getDataFile</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> id <span class="token operator">=</span> req<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> query <span class="token operator">=</span> <span class="token string">'SELECT *FROM pdapp_datasetfile WHERE id=?'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Get data file</span>
+
+    db<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span>result</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Check if data file exist</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">No data file with id:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>err<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Data file with id:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">] was recieved</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">,</span> result<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">deleteDataFile</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> 
+    <span class="token keyword">const</span> id <span class="token operator">=</span> req<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> query <span class="token operator">=</span> <span class="token string">'DELETE FROM pdapp_datasetfile WHERE id=?'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Deleate data file</span>
+
+    db<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> result</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Check if data file exist</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>affectedRows <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">No data file with id:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>err<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Data file with id:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">] was succsessfuly deleted</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">updateDataFile</span> <span class="token operator">=</span>  <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span>res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> id <span class="token operator">=</span> req<span class="token punctuation">.</span>params<span class="token punctuation">.</span>id<span class="token punctuation">;</span> 
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> name<span class="token punctuation">,</span> description<span class="token punctuation">,</span> file_csv<span class="token punctuation">,</span> provider<span class="token punctuation">,</span> created_by_id<span class="token punctuation">,</span> dataset_id<span class="token punctuation">,</span> confirmed <span class="token punctuation">}</span> <span class="token operator">=</span> req<span class="token punctuation">.</span>body<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> query <span class="token operator">=</span> <span class="token string">'UPDATE pdapp_datasetfile SET name=?, description=?, file_csv=?, provider=?, created_by_id=?, dataset_id=?, confirmed=? where id=?'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Update data file</span>
+
+    db<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>query<span class="token punctuation">,</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> description<span class="token punctuation">,</span> file_csv<span class="token punctuation">,</span> provider<span class="token punctuation">,</span> confirmed<span class="token punctuation">,</span> created_by_id<span class="token punctuation">,</span> dataset_id<span class="token punctuation">,</span> id<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> result</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Check if data file exist</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>affectedRows <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">No data file with id:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">404</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Data file with id:[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">] succsessfuly updated</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>message<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> res
+                <span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>createDataFile<span class="token punctuation">,</span> getDataFiles<span class="token punctuation">,</span> getDataFile<span class="token punctuation">,</span> deleteDataFile<span class="token punctuation">,</span> updateDataFile<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">1/8/2023, 5:26:31 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/DB_REST_API/design/" class="prev">
+        Проектування інформаційного забезпечення
+      </a></span> <span class="next"><a href="/DB_REST_API/test/">
+        Тестування працездатності системи
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/DB_REST_API/assets/js/app.a559ff3a.js" defer></script><script src="/DB_REST_API/assets/js/2.a70db7be.js" defer></script><script src="/DB_REST_API/assets/js/23.dc6cf073.js" defer></script>
+  </body>
+</html>
